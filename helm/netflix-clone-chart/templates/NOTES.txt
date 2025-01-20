@@ -1,0 +1,8 @@
+
+1. Get the application URL by running these commands:
+  {{- if .Values.ingress.enabled }}
+  http://{{ .Values.ingress.host }}
+  {{- else }}
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "netflix-clone-chart.fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+  {{- end }}
