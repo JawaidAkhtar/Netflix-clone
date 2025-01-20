@@ -1,23 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "netflix-clone-chart.fullname" . }}
+  name: netflix-clone
   labels:
-    app: {{ include "netflix-clone-chart.name" . }}
+    app: netflix-clone
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 2
   selector:
     matchLabels:
-      app: {{ include "netflix-clone-chart.name" . }}
+      app: netflix-clone
   template:
     metadata:
       labels:
-        app: {{ include "netflix-clone-chart.name" . }}
+        app: netflix-clone
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        - name: netflix-clone
+          image: "jawaid365/netflix-clone:{{ .Values.image.tag }}"
           ports:
             - containerPort: 80
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}

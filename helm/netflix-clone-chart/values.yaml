@@ -2,20 +2,26 @@ replicaCount: 1
 
 image:
   repository: jawaid365/netflix-clone
-  tag: latest
+  tag: "latest"
   pullPolicy: IfNotPresent
 
-service:
-  type: ClusterIP
-  port: 80
+#service:
+#  type: ClusterIP
+#  port: 80
 
 ingress:
   enabled: true
-  host: a06dece6bc5884a3f95d4b858cc28d1d-1788196874.us-east-2.elb.amazonaws.com
+  className: "nginx"
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
-  paths:
-    - /
-
-resources: {}
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: a06dece6bc5884a3f95d4b858cc28d1d-1788196874.us-east-2.elb.amazonaws.com
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: netflix-clone
+              port:
+                number: 80
