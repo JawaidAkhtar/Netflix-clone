@@ -1,21 +1,21 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ include "netflix-clone-chart.fullname" . }}
-  namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    external-dns.alpha.kubernetes.io/hostname: "a06dece6bc5884a3f95d4b858cc28d1d-1788196874.us-east-2.elb.amazonaws.com"
-spec:
-  rules:
-    - host: a06dece6bc5884a3f95d4b858cc28d1d-1788196874.us-east-2.elb.amazonaws.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: netflix-clone-netflix-clone-chart
-                port:
-                  number: 80
-  ingressClassName: nginx
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: netflix-clone
+#  namespace: default
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+  
+#spec:
+#  rules:
+#    - host: a7c4ad77dd3514a6aaee25a2f4da8a9d-325979674.us-east-2.elb.amazonaws.com
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: netflix-clone
+#                port:
+#                  number: 80
+#  ingressClassName: nginx
