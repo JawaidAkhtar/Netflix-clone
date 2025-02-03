@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: jawaid365/netflix-clone
-  tag: "latest"
+  tag: 266c443
   pullPolicy: IfNotPresent
 
 #service:
